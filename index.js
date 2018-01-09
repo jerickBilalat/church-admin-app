@@ -6,7 +6,6 @@ const keys = require("./config/keys");
 const app = express();
 
 
-
 passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientID,

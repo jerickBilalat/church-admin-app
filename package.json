@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "8.9.3",
-    "npm": "5.5.1"
+    "node": "8.9.4",
+    "npm": "5.6.0go"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
