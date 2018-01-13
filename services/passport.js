@@ -27,7 +27,7 @@ passport.use(
     }, (accessToken, refreshToke, profile, done) => {
         // create new instance of user model
         User.findOne({googleId: profile.id})
-            .then(existingUser => {
+            .then( existingUser => {
                 if(existingUser) {
                     console.log("User Already exist");
                     done(null, existingUser);

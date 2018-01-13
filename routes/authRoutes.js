@@ -13,9 +13,14 @@ module.exports = app => {
         passport.authenticate('google')
     );
 
-    // returns current user that is login
+    // returns current user who is logged in
     app.get('/api/current_user', (req, res) => {
         // req.user is added by passport when user is serialized
+        res.send(req.user);
+    });
+
+    app.get('/api/logout', (req, res) => {
+        req.logout();
         res.send(req.user);
     })
 }
