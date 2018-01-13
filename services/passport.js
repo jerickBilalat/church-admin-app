@@ -6,6 +6,19 @@ const mongoose = require('mongoose');
 // Model
 const User = mongoose.model('users');
 
+// OAuth User Serialization and Deserialization
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+})
+passport.deserializeUser((id, done) => {
+    // query user
+    User.findById(id)
+        .then(user => {
+            done(null, user);
+        })
+})
+
+// passport middleware for google strategy
 passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientID,
