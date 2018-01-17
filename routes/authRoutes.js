@@ -10,7 +10,10 @@ module.exports = app => {
     
     app.get(
         '/auth/google/callback',
-        passport.authenticate('google')
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/events');
+        }
     );
 
     // returns current user who is logged in
@@ -20,7 +23,7 @@ module.exports = app => {
     });
 
     app.get('/api/logout', (req, res) => {
-        req.logout();
-        res.send(req.user);
+        req.logout(); // passport set the logout property in the req object
+        res.redirect('/');
     })
 }
