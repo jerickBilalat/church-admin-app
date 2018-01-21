@@ -1,3 +1,5 @@
+
+
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("../config/keys");
@@ -32,10 +34,42 @@ passport.use(
 
         if(existingUser) {
             console.log("User Already exist");
-           return done(null, existingUser);
+            return done(null, existingUser);
         }
-        const user = await new User( {googleId: profile.id}).save();
-        done(null, user);
+
+        // query document of chruchBoard
+        // use static data for now
+        const chruchBoard = [
+            {name: "Jerick Bilalat", title: "chairman", accountType: "admin"},
+            {name: "Jane Doe", title: "clerk", accountType: "default"}
+        ]
+
+        // helper function
+        function formatStr(str) {
+            return str.trim().toLowerCase();
+        }
+        async function createUser(title, accountType) {
+            console.log(`creating new user with and account type of ${accountType}`);
+            const user = await new User({
+                googleId: profile.id,
+                name: profile.displayName,
+                title,
+                accountType })
+                .save();
+            done(null, user);
+        }
+
+        const member =  chruchBoard.find( user => formatStr(user.name) === formatStr(profile.displayName)) || false;
+
+        if(member) {
+            // create user according to their accountType
+            (member.accountType === 'admin') ? createUser(member.title, 'admin') : createUser(member.title,'default');
+        }else {
+            console.log("Your display name is not in the church board members list. Please contact support.");
+            return done(null);
+        }
+    
+        
         
         
     })
