@@ -29,7 +29,7 @@ passport.use(
         proxy: true
     }, 
     async (accessToken, refreshToke, profile, done) => {
-        // create new instance of user model
+       
        const existingUser = await User.findOne({googleId: profile.id});
 
         if(existingUser) {
@@ -44,10 +44,6 @@ passport.use(
             {name: "Jane Doe", title: "clerk", accountType: "default"}
         ]
 
-        // helper function
-        function formatStr(str) {
-            return str.trim().toLowerCase();
-        }
         async function createUser(title, accountType) {
             console.log(`creating new user with and account type of ${accountType}`);
             const user = await new User({
@@ -69,7 +65,10 @@ passport.use(
             return done(null);
         }
     
-        
+        // helper function
+        function formatStr(str) {
+            return str.trim().toLowerCase();
+        }
         
         
     })
