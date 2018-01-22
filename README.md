@@ -1,6 +1,6 @@
 # Administration Web Application
 
-Administration Web Application that is currently begin develope with React, Redux, Express, and MongoDB. This project is the culmination of my 3 months and counting, learnig the MERN stack from various resources that are listed below.
+This project is the culmination of my 3 months and counting, learnig the MERN stack from various resources that are listed below. It is **currently in developement**
 
 ## Learning Resources
 
