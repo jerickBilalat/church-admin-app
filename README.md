@@ -4,11 +4,11 @@ This project is the culmination of my 3 months and counting, learnig the MERN st
 
 ## Learning Resources
 
+* **Getting MEAN** book by Simon Holmes
 * **JavaScript Development Environment** course by Cory House on Pluralsight
 * **Building Applicaitons in React and Redux in ES6** course by Cory House on Pluralsight
 * **Node with React: Full Stack Development** course by Stephen Grider on Udemy
 * **The Complete Node.js Developer Course (2nd Edition)** course by Andrew Mead on Udemy
-* **Getting MEAN** book by Simon Holmes
 * **and more**
 
 ## Get Started

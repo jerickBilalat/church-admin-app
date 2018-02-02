@@ -1,20 +1,27 @@
 
-
+// DEPENDENCIES
 const express = require("express");
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const keys = require('./config/keys');
 
-// order of these two file is important
-require('./models/User');
-require('./services/passport');
-
+// INSTANTIATION
+const app = express();
 mongoose.connect(keys.mongoURI);
 
-const app = express();
+// MODELS
+require('./models/User');
+require('./models/Event');
 
+//CONFIGURATION
+
+
+// MIDDLEWARES
+require('./services/passport');
+app.use(bodyParser.json());
 // configure cookie with cookie-session middleware
 app.use(cookieSession({
     maxAge: 30*24*60*60*1000,
@@ -24,8 +31,13 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
 
+// ROUTES
+require('./routes/authRoutes')(app);
+require('./routes/eventRoutes')(app);
+
+
+// BOOTUP
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
