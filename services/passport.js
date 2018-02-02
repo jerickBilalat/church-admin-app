@@ -40,19 +40,24 @@ passport.use(
         // query document of chruchBoard
         // use static data for now
         const chruchBoard = [
-            {name: "Jerick Bilalat", title: "chairman", accountType: "admin"},
-            {name: "Jane Doe", title: "clerk", accountType: "default"}
+            {name: "Jerick Bilalat", title: "Chairman", accountType: "admin"},
+            {name: "Jane Doe", title: "Clerk", accountType: "default"}
         ]
 
         async function createUser(title, accountType) {
             console.log(`creating new user with and account type of ${accountType}`);
-            const user = await new User({
-                googleId: profile.id,
-                name: profile.displayName,
-                title,
-                accountType })
-                .save();
-            done(null, user);
+            try {
+                const user = await new User({
+                    googleId: profile.id,
+                    name: profile.displayName,
+                    title,
+                    accountType })
+                    .save();
+                done(null, user);
+            } catch (error) {
+                res.send(422).send(error);
+            }
+            
         }
 
         const member =  chruchBoard.find( user => formatStr(user.name) === formatStr(profile.displayName)) || false;

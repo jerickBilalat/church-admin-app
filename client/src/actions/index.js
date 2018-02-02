@@ -11,10 +11,12 @@ export const fetchUser = () => async dispatch => {
 }
 
 export const submitEvent = (values, history) => async dispatch => {
-    console.log(values);
-    // api post request
+    
+    const res = await axios.post('/api/events', values);
+
     history.push('/events');
-    return { type: 'submit_survey' };
+    
+    return { type: 'submit_event', payload: res.data  };
 
 };
 

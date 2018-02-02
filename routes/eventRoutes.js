@@ -1,58 +1,41 @@
 
 
-const express = require("express");
-// const eventRoutes = express.router();
 const mongoose = require('mongoose');  // for testing purposes
 
+// Model
+const Event = mongoose.model('events');
 
 // Middlewares
 const requireLogin = require('../middlewares/requireLogin');
 
 
-const Event = mongoose.model('events'); // for testing purposes
+module.exports = app => {
 
-
-// eventRoutes.route('/api/events')
-//     .all(requireLogin)
-//     .get((req, res) => {
-//         // query database
-        
-//         // dummy data
-//         res.send({title: 'test'})
-//     })
-//     .post((req, res)=> {
-//         const { title, body, authur } = req.body;
-//         const event = new Event({
-//             title,
-//             body,
-//             authrur
-//         })
-//     })
-
-// module.exports = eventRoutes;
-
-module.exports = (app) => {
-
-    app.get('/api/events',requireLogin, (req, res) => {
+    app.get('/api/events',requireLogin, async (req, res) => {
         res.send({
-            title: "test title"
+            title: req.user
         });
     });
 
-    app.post('/api/events',requireLogin, (req, res) => {
-        const {title, body, authur, isAnnounced = true } = req.body;
+    app.post('/api/events',requireLogin, async (req, res) => {
+    
+        const {title, body, author } = req.body;
 
-        // save event
+        // create collection
         const event = new Event({
             title,
             body,
-            authur,
-            isAnnounced
+            author
         });
 
-        // email events to users
-            // fetct users
-            // send email to users
+        // save event
+        try {
+            await event.save();
+            const user = await req.user;
+            res.send(user);
+        } catch (error) {
+            res.status(422).send(error);
+        }
 
     });
 
