@@ -28,7 +28,7 @@ class Header extends Component{
             <nav>
                 <div className="nav-wrapper">
                     <Link 
-                        to={ this.props.auth ? '/events' : '/'}
+                        to="/"
                         className="left brand-logo"
                     >
                         NLCF Admin

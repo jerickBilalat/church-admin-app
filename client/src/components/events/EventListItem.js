@@ -2,6 +2,6 @@
 
 import React from 'react';
 
-const EventListItem = () => <li>First Item</li>
+const EventListItem = () => <li>Dashboard Item</li>
 
 export default EventListItem;
