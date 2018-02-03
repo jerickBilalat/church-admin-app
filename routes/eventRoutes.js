@@ -18,19 +18,21 @@ module.exports = app => {
     });
 
     app.post('/api/events',requireLogin, async (req, res) => {
-    
-        const {title, body, author } = req.body;
+        const { name, title: role } = req.user;
+        const {title, body} = req.body;
 
         // create collection
         const event = new Event({
             title,
             body,
-            author
+            author: name,
+            authorRole: role
         });
 
         // save event
         try {
             await event.save();
+            // send updated user object
             const user = await req.user;
             res.send(user);
         } catch (error) {

@@ -14,7 +14,7 @@ export const submitEvent = (values, history) => async dispatch => {
     
     const res = await axios.post('/api/events', values);
 
-    history.push('/dashboard');
+    history.push('/');
     
     return { type: 'submit_event', payload: res.data  };
 
