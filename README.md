@@ -17,4 +17,6 @@ This project is the culmination of my 3 months and counting, learnig the MERN st
 2. **Clone this repository.**
 3. **Make sure you're in the directory you just created.**
 4. **Install Node Packages.** - `npm install`
-5. **Run the app.** - `npm run dev`
+5. **Create a copy of the prod.js file in the config folder and named it dev.js** 
+6. **Change object key values in the dev.js file to your Google Auth API keys and MongoURI. The cookieKey value can be random alphanumeric characters**
+6. **Run the app.** - `npm run dev`
