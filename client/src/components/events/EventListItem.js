@@ -2,6 +2,6 @@
 
 import React from 'react';
 
-const EventListItem = () => <li>Dashboard Item</li>
+const EventListItem = (props) => <li>{props.title}</li>
 
 export default EventListItem;

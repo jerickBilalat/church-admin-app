@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import EventAddButton from './events/EventAddButton';
 import Dashboard from './Dashboard';
+import  {fetchEvents} from '../actions';
 
 class Landing extends Component{
     renderContent() {
@@ -21,11 +22,15 @@ class Landing extends Component{
                 return (
                     <div>
                         <EventAddButton />
-                        <Dashboard />
+                        <Dashboard events={this.props.events} />
                     </div>
                 );
 
         }
+    }
+
+    componentDidMount() {
+        this.props.fetchEvents();
     }
 
     render() {
@@ -37,8 +42,8 @@ class Landing extends Component{
     }
 }
 
-function MapStateToProps( {auth} ) {
-    return {auth};
+function mapStateToProps( {auth, events}, ownProps ) {
+    return {auth, events};
 }
 
-export default connect(MapStateToProps)(Landing);
+export default connect(mapStateToProps, {fetchEvents})(Landing);

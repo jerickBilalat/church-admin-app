@@ -3,10 +3,11 @@
 import React from 'react';
 import EventList from './events/EventList';
 
-const Dashboard = () => {
+const Dashboard = ({events}) => {
     return (
         <div>
-            <EventList />
+            <div>Dashboard</div>
+            <EventList events={events}/>
         </div>
     )
 }
