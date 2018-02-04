@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import Landing from './Landing';
-import EventNew  from './events/EventNew';
+import LandingPage from './LandingPage';
+import ManageEventPage  from './events/ManageEventPage';
 
 
 class App extends Component {
@@ -18,8 +18,8 @@ class App extends Component {
                 <BrowserRouter>
                     <div className="container">
                         <Header />
-                        <Route exact path="/" component={Landing} />
-                        <Route path="/events/new" component={EventNew} />
+                        <Route exact path="/" component={LandingPage} />
+                        <Route path="/events/new" component={ManageEventPage} />
                     </div>
                 </BrowserRouter>
             </div>
