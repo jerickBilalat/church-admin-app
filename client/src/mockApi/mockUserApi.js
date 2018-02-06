@@ -48,26 +48,9 @@ class userApi {
     user = Object.assign({}, user); // to avo_id manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulate server-s_ide val_idation
-        const minuserNameLength = 3;
-        if (user.firstName.length < minuserNameLength) {
-          reject(`First Name must be at least ${minuserNameLength} characters.`);
-        }
-
-        if (user.lastName.length < minuserNameLength) {
-          reject(`Last Name must be at least ${minuserNameLength} characters.`);
-        }
-
-        if (user._id) {
-          const existinguserIndex = users.findIndex(a => a._id == user._id);
-          users.splice(existinguserIndex, 1, user);
-        } else {
-          //Just simulating creation here.
-          //The server would generate _ids for new users in a real app.
-          //Cloning so copy returned is passed by value rather than by reference.
-          user._id = generate_id(user);
-          users.push(user);
-        }
+        
+        user._id = generate_id(user);
+        users.push(user);
 
         resolve(user);
       }, delay);

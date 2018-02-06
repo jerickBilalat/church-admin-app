@@ -16,7 +16,7 @@ function sendJSONresponse(res, status, content) {
 
 module.exports = app => {
 
-    app.get('/api/events', async (req, res) => {
+    app.get('/api/events', requireLogin, async (req, res) => {
 
         const events = await Event.find({}, (err, events) => {
             if(events.length === 0) {

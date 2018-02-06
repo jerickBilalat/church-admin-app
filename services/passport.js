@@ -72,6 +72,7 @@ passport.use(
     
         // helper function
         function formatStr(str) {
+            // remove with space with regEx and trim string
             return str.trim().toLowerCase();
         }
         

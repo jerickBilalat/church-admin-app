@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 
 class ManageUsersPage extends Component {
     render() {
-
+        <div>
+        </div>
     }
 }
 
