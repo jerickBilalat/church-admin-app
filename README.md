@@ -1,5 +1,7 @@
 # Administration Web Application
 
+Goal: To build an administartion application where users can create events and publish it via email to notify members. 
+
 This project is the culmination of my 3 months and counting learning the MERN stack from various resources that are listed below. It is **currently in developement.**
 
 Update 02/05/18: The main focus this week are mocking API and error handling.
