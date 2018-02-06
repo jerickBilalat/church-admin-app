@@ -30,6 +30,7 @@ module.exports = app => {
             }
             res.send(events);
         });
+        
     });
 
     app.post('/api/events',requireLogin, async (req, res) => {
