@@ -89,12 +89,28 @@ const events = [
     }
 ];
 
+
+function generateId(event) {
+    return `${event.title}-${event.body}`;
+}
+
 class EventApi{
     static fetchEvents() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(Object.assign([], events));
               }, delay);
+        })
+    }
+
+    static saveEvent(event) {
+        event = Object.assign({}, event);
+        return new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                event["_id"] = generateId(event); 
+                events.push(event)
+                resolve(events);
+            }, delay);
         })
     }
 }

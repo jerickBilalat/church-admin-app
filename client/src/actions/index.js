@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_EVENTS } from './types';
+import { FETCH_USER, FETCH_EVENTS, SUBMIT_EVENT } from './types';
 
 import mockEventApi from '../mockApi/mockEventApi';
 import mockAuthApi from '../mockApi/mockAuthApi';
@@ -21,11 +21,13 @@ export const fetchUser = () => async dispatch => {
 export const submitEvent = (values, history) => async dispatch => {
     try {
 
+        const res = await mockEventApi.saveEvent(values);
+        dispatch({ type: SUBMIT_EVENT, payload: res });
+        
 
-
-        const res = await axios.post('/api/events', values);
+        // const res = await axios.post('/api/events', values);
         history.push('/');
-        dispatch({ type: FETCH_USER, payload: res.data  });
+        // dispatch({ type: FETCH_USER, payload: res.data  });
     } catch (error) {
         console.log(error);
     }

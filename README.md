@@ -1,6 +1,8 @@
 # Administration Web Application
 
-This project is the culmination of my 3 months and counting, learnig the MERN stack from various resources that are listed below. It is **currently in developement**
+This project is the culmination of my 3 months and counting learning the MERN stack from various resources that are listed below. It is **currently in developement.**
+
+Update 02/05/18: The main focus this week are mocking API and error handling.
 
 ## Learning Resources
 
@@ -20,3 +22,4 @@ This project is the culmination of my 3 months and counting, learnig the MERN st
 5. **Create a copy of the prod.js file in the config folder and named it dev.js** 
 6. **Change object key values in the dev.js file to your Google Auth API keys and MongoURI. The cookieKey value can be random alphanumeric characters**
 6. **Run the app.** - `npm run dev`
+
