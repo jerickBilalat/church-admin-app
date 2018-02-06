@@ -25,3 +25,4 @@ Update 02/05/18: The main focus this week are mocking API and error handling.
 6. **Change object key values in the dev.js file to your Google Auth API keys and MongoURI. The cookieKey value can be random alphanumeric characters**
 7. **Run the app.** - `npm run client`
 
+Update 02/06/18: Currently integrating mock API for the client, therefore when running the applicaiton via npm run client, note that it is not the full stack version but only client integrated with the mock APIs.
