@@ -31,18 +31,10 @@ passport.use(
     async (accessToken, refreshToke, profile, done) => {
        
        const existingUser = await User.findOne({googleId: profile.id});
-
         if(existingUser) {
             console.log("User Already exist");
             return done(null, existingUser);
         }
-
-        // query document of chruchBoard
-        // use static data for now
-        const chruchBoard = [
-            {name: "Jerick Bilalat", title: "Chairman", userType: "admin"},
-            {name: "Jane Doe", title: "Clerk", userType: "default"}
-        ]
 
         async function createUser(title, userType) {
             console.log(`creating new user with and account type of ${userType}`);
@@ -60,8 +52,19 @@ passport.use(
             
         }
 
-        const member =  chruchBoard.find( user => formatStr(user.name) === formatStr(profile.displayName)) || false;
+        /* 
+            Query chruchBoard document here
+            Static data below is currenly in use
+        */
+        const chruchBoard = [
+            {name: "Jerick Bilalat", title: "Chairman", userType: "admin"},
+            {name: "Jane Doe", title: "Clerk", userType: "default"}
+        ]
 
+        /*
+            Create user if user is a member of the churdBoard
+        */
+        const member =  chruchBoard.find( user => formatStr(user.name) === formatStr(profile.displayName)) || false;
         if(member) {
             // create user according to their userType
             (member.userType === 'admin') ? createUser(member.title, 'admin') : createUser(member.title,'default');
@@ -72,8 +75,7 @@ passport.use(
     
         // helper function
         function formatStr(str) {
-            // remove with space with regEx and trim string
-            return str.trim().toLowerCase();
+            return str.reaplce(/\s/g,'').toLowerCase();
         }
         
         
