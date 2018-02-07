@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_EVENTS, SUBMIT_EVENT } from './types';
+import { FETCH_USER, FETCH_EVENTS} from './types';
 
 export const fetchUser = () => async dispatch => {
     try {
@@ -14,7 +14,7 @@ export const fetchUser = () => async dispatch => {
 export const submitEvent = (values, history) => async dispatch => {
     try {
         const res = await axios.post('/api/events', values);
-        history.push('/');
+        history.push('/dashboard');
         dispatch({ type: FETCH_USER, payload: res.data  });
     } catch (error) {
         console.log(error);

@@ -2,12 +2,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import UserForm from './UserForm';
+
 
 class ManageUsersPage extends Component {
     render() {
-        <div>
-        </div>
+        return(
+            <div>
+                <UserForm />
+            </div>
+        )
+        
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageUsersPage);
+export default ManageUsersPage;

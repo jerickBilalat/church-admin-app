@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import EventAddButton from './events/EventAddButton';
+import UserAddButton from './users/UserAddButton';
 
 class Header extends Component{
-    renderContent() {
+    renderAuthButton() {
         switch(this.props.auth) {
             case null:
                 return;
@@ -33,8 +35,12 @@ class Header extends Component{
                     >
                         NLCF Admin
                     </Link>
+
                     <ul className="right">
-                        {this.renderContent()}
+                        <li><Link to="/dashboard">Dashboard</Link></li>
+                        <li><EventAddButton /></li>
+                        <li><UserAddButton /></li>
+                        {this.renderAuthButton()}
                     </ul>
                 </div>
             </nav>

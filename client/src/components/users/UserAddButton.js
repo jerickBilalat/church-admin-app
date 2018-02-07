@@ -1,15 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const EventAddButton = () => {
+const UserAddButton = () => {
     
     return (
         <Link
-            to = "/events/new"
+            to = "/user/new"
         >
-            + Add Event
+            + Add User
         </Link>
     )
 }
 
-export default EventAddButton;
+export default UserAddButton;

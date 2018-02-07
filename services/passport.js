@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 })
 passport.deserializeUser((id, done) => {
-    // query user
+    // Query user
     User.findById(id)
         .then(user => {
             done(null, user);
@@ -29,28 +29,14 @@ passport.use(
         proxy: true
     }, 
     async (accessToken, refreshToke, profile, done) => {
-       
+        
+
        const existingUser = await User.findOne({googleId: profile.id});
         if(existingUser) {
             console.log("User Already exist");
             return done(null, existingUser);
         }
 
-        async function createUser(title, userType) {
-            console.log(`creating new user with and account type of ${userType}`);
-            try {
-                const user = await new User({
-                    googleId: profile.id,
-                    name: profile.displayName,
-                    title,
-                    userType })
-                    .save();
-                done(null, user);
-            } catch (error) {
-                res.send(422).send(error);
-            }
-            
-        }
 
         /* 
             Query chruchBoard document here
@@ -70,13 +56,31 @@ passport.use(
             (member.userType === 'admin') ? createUser(member.title, 'admin') : createUser(member.title,'default');
         }else {
             console.log("Your display name is not in the church board members list. Please contact support.");
-            return done(null);
+            // redirect to a contat admin page
+            done(null, {noUser: true});
         }
     
-        // helper function
+        // helper functions
         function formatStr(str) {
             return str.reaplce(/\s/g,'').toLowerCase();
         }
+        async function createUser(title, userType) {
+            console.log(`creating new user with and account type of ${userType}`);
+            try {
+                const user = await new User({
+                    googleId: profile.id,
+                    name: profile.displayName,
+                    title,
+                    userType })
+                    .save();
+                done(null, user);
+            } catch (error) {
+                res.send(422).send(error);
+            }
+            
+        }
+
+        
         
         
     })

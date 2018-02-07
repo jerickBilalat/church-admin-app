@@ -1,15 +1,36 @@
 
 
-import React from 'react';
+import React,{Component} from 'react';
 import EventList from './events/EventList';
+import {connect} from 'react-redux';
+import {fetchEvents} from '../actions';
 
-const Dashboard = ({events}) => {
-    return (
-        <div>
-            <div>Dashboard</div>
-            <EventList events={events}/>
-        </div>
-    )
+ class Dashboard extends Component{
+
+    renderEvents() {
+        if(this.props.events.length === 0) {
+            return <p>No current events</p>
+        }else {
+            return <EventList events={this.props.events}/>
+        }
+    }
+
+    componentDidMount() {
+        this.props.fetchEvents();
+    }
+
+     render() {
+        return (
+            <div>
+                {this.renderEvents()}
+            </div>
+        )
+     }
+ } 
+
+
+function mapStateToProps( {events}, ownProps ) {
+    return {events};
 }
 
-export default Dashboard;
+export default connect(mapStateToProps, {fetchEvents})(Dashboard);

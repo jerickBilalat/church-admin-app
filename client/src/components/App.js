@@ -6,6 +6,8 @@ import * as actions from '../actions';
 import Header from './Header';
 import LandingPage from './LandingPage';
 import ManageEventPage  from './events/ManageEventPage';
+import ManageUserPage from './users/ManageUserPage';
+import Dashboard from './Dashboard';
 
 
 class App extends Component {
@@ -19,7 +21,9 @@ class App extends Component {
                     <div className="container">
                         <Header />
                         <Route exact path="/" component={LandingPage} />
+                        <Route exact path="/dashboard" component={Dashboard} />
                         <Route path="/events/new" component={ManageEventPage} />
+                        <Route path="/user/new" component={ManageUserPage} />
                     </div>
                 </BrowserRouter>
             </div>

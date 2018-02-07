@@ -19,11 +19,6 @@ module.exports = app => {
     app.get('/api/events', requireLogin, async (req, res) => {
 
         const events = await Event.find({}, (err, events) => {
-            if(events.length === 0) {
-                console.log("No events found")
-                sendJSONresponse(res, 200, {"message": "server responded with empty result"});
-                return;
-            }
             if(err) {
                 console.log("Failed to query events from the database");
                 res.status(500);
