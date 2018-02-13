@@ -6,23 +6,23 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
-const keys = require('./config/keys');
-
-// INSTANTIATION
-const app = express();
-mongoose.connect(keys.mongoURI);
-
 // MODELS
 require('./models/User');
 require('./models/Event');
 
-//CONFIGURATION
+// SERVICES
+require('./services/passport'); // must require before User model
 
+const keys = require('./config/keys');
+
+// INSTANTIATION
+const app = express();
+
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongoURI, {useMongoClient: true});
 
 // MIDDLEWARES
-require('./services/passport');
 app.use(bodyParser.json());
-// configure cookie with cookie-session middleware
 app.use(cookieSession({
     maxAge: 30*24*60*60*1000,
     keys: [keys.cookieKey]
@@ -31,11 +31,9 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // ROUTES
 require('./routes/authRoutes')(app);
 require('./routes/eventRoutes')(app);
-
 
 // BOOTUP
 const PORT = process.env.PORT || 8080;

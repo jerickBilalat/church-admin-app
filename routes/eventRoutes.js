@@ -1,56 +1,22 @@
 
 
 const mongoose = require('mongoose');  // for testing purposes
+const ctrlEvents = require('../controllers/events');
 
-// Model
-const Event = mongoose.model('events');
-
-// Middlewares
+// MIDDLEWARES
 const requireLogin = require('../middlewares/requireLogin');
 
-// Helpers
+// HELPERS
 function sendJSONresponse(res, status, content) {
     res.status(status);
     res.json(content);
-} 
+}
 
+// ROUTES
 module.exports = app => {
 
-    app.get('/api/events', requireLogin, async (req, res) => {
-
-        const events = await Event.find({}, (err, events) => {
-            if(err) {
-                console.log("Failed to query events from the database");
-                res.status(500);
-            }
-            res.send(events);
-        });
-        
-    });
-
-    app.post('/api/events',requireLogin, async (req, res) => {
-        const { name, title: role } = req.user;
-        const {title, body} = req.body;
-
-        // create collection
-        const event = new Event({
-            title,
-            body,
-            author: name,
-            authorRole: role
-        });
-
-        // save event
-        try {
-            await event.save();
-            // send updated user object
-            const user = await req.user;
-            res.send(user);
-        } catch (error) {
-            res.status(422).send(error);
-        }
-
-    });
+    app.get('/api/events', ctrlEvents.eventsListAll);
+    app.post('/api/events',requireLogin, ctrlEvents.eventsCreate);
 
 }
 

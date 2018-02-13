@@ -24,17 +24,17 @@ class EventForm extends Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-                {this.renderEventField()}
-                <Link
-                    to="/events"
-                    className="red btn-flat white-text" >
-                    Cancel
-                </Link>
-                <button 
-                    type="submit" 
-                    className="teal btn-flat right white-text">
-                    Next
-                </button>
+                    {this.renderEventField()}
+                    <Link
+                        to="/events"
+                        className="red btn-flat white-text" >
+                        Cancel
+                    </Link>
+                    <button 
+                        type="submit" 
+                        className="teal btn-flat right white-text">
+                        Next
+                    </button>
             </form>
         )
     }

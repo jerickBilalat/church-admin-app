@@ -75,7 +75,7 @@ passport.use(
                     .save();
                 done(null, user);
             } catch (error) {
-                res.send(422).send(error);
+                res.status(500).json(error);
             }
             
         }

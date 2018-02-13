@@ -5,7 +5,7 @@ import EventAddButton from './events/EventAddButton';
 import UserAddButton from './users/UserAddButton';
 
 class Header extends Component{
-    renderAuthButton() {
+    renderNavigation() {
         switch(this.props.auth) {
             case null:
                 return;
@@ -17,9 +17,13 @@ class Header extends Component{
                 ); 
             default:
                 return (
-                    <li>
-                        <a href="/api/logout">Logout</a>
-                    </li>
+                    <ul>
+                        <li><EventAddButton /></li>
+                        <li><UserAddButton /></li>
+                        <li>
+                            <a href="/api/logout">Logout</a>
+                        </li>
+                    </ul>
                 );
 
         }
@@ -37,10 +41,7 @@ class Header extends Component{
                     </Link>
 
                     <ul className="right">
-                        <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><EventAddButton /></li>
-                        <li><UserAddButton /></li>
-                        {this.renderAuthButton()}
+                        {this.renderNavigation()}
                     </ul>
                 </div>
             </nav>

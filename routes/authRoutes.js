@@ -12,14 +12,12 @@ module.exports = app => {
         '/auth/google/callback',
         passport.authenticate('google'),
         (req, res) => {
-            res.redirect('/dashboard');
+            res.redirect('/dashboard'); // client route
         }
     );
 
-    // returns current user who is logged in
     app.get('/api/current_user', (req, res) => {
-        // req.user is added by passport when user is serialized
-        res.send(req.user);
+        res.send(req.user); // req.user is added by passport when user is serialized
     });
 
     app.get('/api/logout', (req, res) => {
