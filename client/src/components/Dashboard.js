@@ -22,6 +22,7 @@ import {fetchEvents} from '../actions';
      render() {
         return (
             <div>
+                <h1>Events</h1>
                 {this.renderEvents()}
             </div>
         )

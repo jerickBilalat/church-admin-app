@@ -10,7 +10,8 @@ const UserForm = ({onChange}) => {
     return (
         <form>
             <div className="row">
-                <h1>Add User Form</h1>
+                <h1>Add User</h1>
+                <p style={{color:'red'}}>Component functionality is currenly not complete</p>
                 <TextInput 
                     type="text"
                     label="First Name"

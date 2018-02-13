@@ -15,8 +15,8 @@ function sendJSONresponse(res, status, content) {
 // ROUTES
 module.exports = app => {
 
-    app.get('/api/events', ctrlEvents.eventsListAll);
-    app.post('/api/events',requireLogin, ctrlEvents.eventsCreate);
+    app.get('/api/events', requireLogin, ctrlEvents.eventsListAll);
+    app.post('/api/events', requireLogin, ctrlEvents.eventsCreate);
 
 }
 

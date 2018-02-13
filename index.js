@@ -15,11 +15,13 @@ require('./services/passport'); // must require before User model
 
 const keys = require('./config/keys');
 
-// INSTANTIATION
-const app = express();
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, {useMongoClient: true});
+
+// INSTANTIATION
+const app = express();
 
 // MIDDLEWARES
 app.use(bodyParser.json());

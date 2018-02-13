@@ -62,7 +62,7 @@ passport.use(
     
         // helper functions
         function formatStr(str) {
-            return str.reaplce(/\s/g,'').toLowerCase();
+            return str.replace(/\s/g,'').toLowerCase();
         }
         async function createUser(title, userType) {
             console.log(`creating new user with and account type of ${userType}`);

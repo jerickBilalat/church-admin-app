@@ -18,6 +18,7 @@ class Header extends Component{
             default:
                 return (
                     <ul>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><EventAddButton /></li>
                         <li><UserAddButton /></li>
                         <li>
